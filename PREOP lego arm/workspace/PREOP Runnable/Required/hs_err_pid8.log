@@ -1,0 +1,83 @@
+
+An unexpected exception has been detected in native code outside the VM.
+Unexpected Signal : EXCEPTION_ACCESS_VIOLATION occurred at PC=0x34F1349C
+Function name=(N/A)
+Library=Z:\home\mike\development\Alice\Alice-Dev\Windows\Alice with Robotics\Alice Runnable\Required\jre1.3.1_10_win32\bin\fontmanager.dll
+
+NOTE: We are unable to locate the function name symbol for the error
+      just occurred. Please refer to release documentation for possible
+      reason and solutions.
+
+
+
+Current Java thread:
+	at sun.awt.font.NativeFontWrapper.getFontMetrics(Native Method)
+	at sun.awt.font.FontDesignMetrics.initMatrixAndMetrics(Unknown Source)
+	at sun.awt.font.FontDesignMetrics.<init>(Unknown Source)
+	at sun.awt.font.FontDesignMetrics.<init>(Unknown Source)
+	at sun.awt.SunToolkit.getFontMetrics(Unknown Source)
+	at sun.awt.windows.WToolkit.getFontMetrics(Unknown Source)
+	at javax.swing.plaf.basic.BasicGraphicsUtils.getPreferredButtonSize(Unknown Source)
+	at javax.swing.plaf.basic.BasicButtonUI.getPreferredSize(Unknown Source)
+	at javax.swing.JComponent.getPreferredSize(Unknown Source)
+	at javax.swing.plaf.basic.BasicSplitPaneUI$BasicHorizontalLayoutManager.preferredLayoutSize(Unknown Source)
+	at javax.swing.plaf.basic.BasicSplitPaneUI.getPreferredSize(Unknown Source)
+	at javax.swing.JComponent.getPreferredSize(Unknown Source)
+	at javax.swing.plaf.basic.BasicSplitPaneUI$BasicHorizontalLayoutManager.updateComponents(Unknown Source)
+	at javax.swing.plaf.basic.BasicSplitPaneUI.resetLayoutManager(Unknown Source)
+	at javax.swing.plaf.basic.BasicSplitPaneUI.installDefaults(Unknown Source)
+	at javax.swing.plaf.basic.BasicSplitPaneUI.installUI(Unknown Source)
+	at javax.swing.JComponent.setUI(Unknown Source)
+	at javax.swing.JSplitPane.setUI(Unknown Source)
+	at javax.swing.JSplitPane.updateUI(Unknown Source)
+	at javax.swing.JSplitPane.<init>(Unknown Source)
+	at javax.swing.JSplitPane.<init>(Unknown Source)
+	at edu.cmu.cs.stage3.alice.authoringtool.JAliceFrame.<init>(JAliceFrame.java:534)
+	at edu.cmu.cs.stage3.alice.authoringtool.AuthoringTool.mainInit(AuthoringTool.java:466)
+	at edu.cmu.cs.stage3.alice.authoringtool.AuthoringTool.<init>(AuthoringTool.java:418)
+	at edu.cmu.cs.stage3.alice.authoringtool.JAlice.main(JAlice.java:125)
+
+Dynamic libraries:
+0x00400000 - 0x00412000 	Z:\home\mike\development\Alice\Alice-Dev\Windows\Alice with Robotics\Alice Runnable\Alice.exe
+0x7BC10000 - 0x7BCA4000 	C:\windows\system32\ntdll.dll
+0x7B820000 - 0x7B92D000 	C:\windows\system32\KERNEL32.dll
+0x7ED60000 - 0x7EE8C000 	C:\windows\system32\user32.dll
+0x7ECC0000 - 0x7ED45000 	C:\windows\system32\gdi32.dll
+0x7EC60000 - 0x7ECAA000 	C:\windows\system32\advapi32.dll
+0x7EAD0000 - 0x7EB53000 	C:\windows\system32\winex11.drv
+0x7E970000 - 0x7E984000 	C:\windows\system32\imm32.dll
+0x7E690000 - 0x7E781000 	C:\windows\system32\wined3d.dll
+0x7C400000 - 0x7C408000 	C:\windows\system32\dpnhpast.dll
+0x006B0000 - 0x00788000 	Z:\home\mike\development\Alice\Alice-Dev\Windows\Alice with Robotics\Alice Runnable\Required\jre1.3.1_10_win32\bin\hotspot\jvm.dll
+0x7BD70000 - 0x7BDEF000 	C:\windows\system32\winmm.dll
+0x7E860000 - 0x7E8B7000 	C:\windows\system32\msvcrt.dll
+0x7E820000 - 0x7E84D000 	C:\windows\system32\winealsa.drv
+0x7E810000 - 0x7E817000 	C:\windows\system32\msacm32.drv
+0x7E7E0000 - 0x7E800000 	C:\windows\system32\msacm32.dll
+0x7E7B0000 - 0x7E7BF000 	C:\windows\system32\midimap.dll
+0x00330000 - 0x00337000 	Z:\home\mike\development\Alice\Alice-Dev\Windows\Alice with Robotics\Alice Runnable\Required\jre1.3.1_10_win32\bin\hpi.dll
+0x00340000 - 0x0034D000 	Z:\home\mike\development\Alice\Alice-Dev\Windows\Alice with Robotics\Alice Runnable\Required\jre1.3.1_10_win32\bin\verify.dll
+0x00350000 - 0x00368000 	Z:\home\mike\development\Alice\Alice-Dev\Windows\Alice with Robotics\Alice Runnable\Required\jre1.3.1_10_win32\bin\java.dll
+0x00370000 - 0x0037D000 	Z:\home\mike\development\Alice\Alice-Dev\Windows\Alice with Robotics\Alice Runnable\Required\jre1.3.1_10_win32\bin\zip.dll
+0x34DE0000 - 0x34EEB000 	Z:\home\mike\development\Alice\Alice-Dev\Windows\Alice with Robotics\Alice Runnable\Required\jre1.3.1_10_win32\bin\awt.dll
+0x7C3D0000 - 0x7C3F5000 	C:\windows\system32\winspool.drv
+0x7BCD0000 - 0x7BD5D000 	C:\windows\system32\ole32.dll
+0x7C370000 - 0x7C3BF000 	C:\windows\system32\rpcrt4.dll
+0x7C350000 - 0x7C35E000 	C:\windows\system32\iphlpapi.dll
+0x34EF0000 - 0x34F2B000 	Z:\home\mike\development\Alice\Alice-Dev\Windows\Alice with Robotics\Alice Runnable\Required\jre1.3.1_10_win32\bin\fontmanager.dll
+0x34F30000 - 0x34F3D000 	Z:\home\mike\development\Alice\Alice-Dev\Windows\Alice with Robotics\Alice Runnable\Required\lib\win32\jni_directxversion.dll
+0x35050000 - 0x35055000 	Z:\home\mike\development\Alice\Alice-Dev\Windows\Alice with Robotics\Alice Runnable\Required\jre1.3.1_10_win32\bin\jawt.dll
+0x35060000 - 0x350B5000 	Z:\home\mike\development\Alice\Alice-Dev\Windows\Alice with Robotics\Alice Runnable\Required\lib\win32\jni_directx7renderer.dll
+0x6A870000 - 0x6A8B7000 	C:\windows\system32\ddraw.dll
+0x353F0000 - 0x353FB000 	Z:\home\mike\development\Alice\Alice-Dev\Windows\Alice with Robotics\Alice Runnable\Required\lib\win32\jni_cdutil.dll
+0x7BB60000 - 0x7BB72000 	C:\windows\system32\imagehlp.dll
+0x6A710000 - 0x6A74F000 	C:\windows\system32\dbghelp.dll
+0x7BB50000 - 0x7BB5B000 	C:\windows\system32\psapi.dll
+
+Local Time = Mon Jan  5 16:41:52 2009
+Elapsed Time = 2
+#
+# The exception above was detected in native code outside the VM
+#
+# Java VM: Java HotSpot(TM) Client VM (1.3.1_10-b03 mixed mode)
+#

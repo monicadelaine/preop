@@ -1,0 +1,336 @@
+<?xml version="1.0"?>
+<!-- Tutorial for iRobot Create written by: Mike Raines -->
+<!-- Search for "TutorialID={PageNumber}" to modify or examine specific stencils -->
+<stencilStack access="read" world="tutorialWorlds/livingRoom.a2w" >
+	<stencil title="Welcome to using the iRobot Create with Alice" stepsToGoBack="1"> <!-- TutorialID=1 -->
+		<stateCapsule>
+			<![CDATA[existantElements|?|nonExistantElements|?|propertyValues|?|elementPositions|?|]]>
+		</stateCapsule>
+		<note type="null" hasNext="true" xPos="0.006782945736434108" yPos="0.0945945945945946">
+			<id>
+				<![CDATA[null]]>
+			</id>
+			<message>
+				<![CDATA[Welcome to the iRobot Create Tutorial in PREOP!]]>
+			</message>
+			<message>
+				<![CDATA[This tutorial will teach you how to use the iRobot Create alongside the Alice environment.]]>
+			</message>
+		</note>
+	</stencil>
+	<stencil title="Welcome to using the iRobot Create with Alice" stepsToGoBack="1"> <!-- TutorialID=2 -->
+		<stateCapsule>
+			<![CDATA[existantElements|?|nonExistantElements|?|propertyValues|?|elementPositions|?|]]>
+		</stateCapsule>
+		<note type="null" hasNext="true" xPos="0.005813953488372093" yPos="0.25">
+			<id>
+				<![CDATA[null]]>
+			</id>
+			<message>
+				<![CDATA[Just like manipulating models in the Alice's virtual world, we can manipulate the iCreate in real space!]]>
+			</message>
+			<message>
+				<![CDATA[Click "next" to continue]]>
+			</message>
+		</note>
+	</stencil>
+	<stencil title="Selecting the iCreate in the Object Tree" stepsToGoBack="1"> <!-- TutorialID=3 -->
+		<stateCapsule>
+			<![CDATA[existantElements|?|nonExistantElements|?|propertyValues|?|elementPositions|?|]]>
+		</stateCapsule>
+		<note type="frame" hasNext="true" autoAdvance="false" advanceEvent="mousePress" xPos="-44.0" yPos="94.0">
+			<id>
+				<![CDATA[objectTree]]>
+			</id>
+			<message>
+				<![CDATA[The Object Tree holds all the information about all the objects that exist in the world.]]>
+			</message>
+			<message>
+				<![CDATA[We can view more details about our objects by selecting components of the Object Tree]]>
+			</message>
+		</note>
+	</stencil>
+	<stencil title="Selecting the iCreate in the Object Tree" stepsToGoBack="1"> <!-- TutorialID=4 -->
+		<stateCapsule>
+			<![CDATA[existantElements|?|nonExistantElements|?|propertyValues|?|elementPositions|?|]]>
+		</stateCapsule>
+		<note type="hole" autoAdvance="true" advanceEvent="mousePress" hasNext="false" xPos="50" yPos="50">
+			<id>
+				<![CDATA[objectTree<robot>]]>
+			</id>
+			<message>
+				<![CDATA[By clicking the "robot" from the Object Tree we can see information about it.]]>
+			</message>
+			<message>
+				<![CDATA[Click "robot" in the Object Tree to continue]]>
+			</message>
+		</note>
+	</stencil>
+	<stencil title="Manipulating the iCreate" stepsToGoBack="1"> <!-- TutorialID=5 -->
+		<stateCapsule>
+			<![CDATA[existantElements|?|nonExistantElements|?|propertyValues|?|elementPositions|?|]]>
+		</stateCapsule>
+		<note type="hole" hasNext="false" autoAdvance="true" advanceEvent="mouseClick" xPos="200" yPos="1">
+			<id>
+				<![CDATA[details<robot>:tab<0>]]>
+			</id>
+			<message>
+				<![CDATA[Now that the robot is selected we can view details about it.]]>
+			</message>
+			<message>
+				<![CDATA[What we want to look at are the robot's properties. Click the "properties" tab to continue.]]>
+			</message>
+		</note>
+	</stencil>
+	<stencil title="Manipulating the iCreate" stepsToGoBack="1"> <!-- TutorialID=6 -->
+		<stateCapsule>
+			<![CDATA[existantElements|?|nonExistantElements|?|propertyValues|?|elementPositions|?|]]>
+		</stateCapsule>
+		<note type="frame" hasNext="true" xPos="-120" yPos="-225">
+			<id>
+				<![CDATA[details<robot>]]>
+			</id>
+			<message>
+				<![CDATA[This area allows us to view and modify certain properties of the iRobot Create.]]>
+			</message>
+			<message>
+				<![CDATA[It is through this menu that we can establish and destroy connections to the robot in real space!]]>
+			</message>
+		</note>
+	</stencil>
+	<stencil title="Manipulating the iCreate" stepsToGoBack="1"> <!-- TutorialID=7 -->
+		<stateCapsule>
+			<![CDATA[existantElements|?|nonExistantElements|?|propertyValues|?|elementPositions|?|]]>
+		</stateCapsule>
+		<note type="frame" hasNext="true" xPos="-50" yPos="-225">
+			<id>
+				<![CDATA[details<robot>:property<connectedTo>]]>
+			</id>
+			<message>
+				<![CDATA[The "connectedTo" property tells us what robot in real space the virtual object is currently pointed at.]]>
+			</message>
+		</note>
+	</stencil>
+	<stencil title="Manipulating the iCreate" stepsToGoBack="1"> <!-- TutorialID=8 -->
+		<stateCapsule>
+			<![CDATA[existantElements|?|nonExistantElements|?|propertyValues|?|elementPositions|?|]]>
+		</stateCapsule>
+		<note type="hole" hasNext="false" autoAdvance="true" advanceEvent="mouseClick" xPos="-120" yPos="-225">
+			<id>
+				<![CDATA[details<robot>]]>
+			</id>
+			<message>
+				<![CDATA[Click on the drop down menu next to the "connectedTo"]]>
+			</message>
+		</note>
+	</stencil>
+	<stencil title="Manipulating the iCreate" stepsToGoBack="1"> <!-- TutorialID=9 -->
+		<stateCapsule>
+			<![CDATA[existantElements|?|nonExistantElements|?|propertyValues|?|elementPositions|?|]]>
+		</stateCapsule>
+		<note type="null" hasNext="true" xPos="0.006782945736434108" yPos="0.0945945945945946">
+			<id>
+				<![CDATA[null]]>
+			</id>
+			<message>
+				<![CDATA[Select "other" from the drop down menu and enter the last 4 digits of the MAC Adress of the desired target. After the light on the target robot has turned red click "next".]]>
+			</message>
+		</note>
+		<note type="null" hasNext="false" xPos=".6" yPos=".4">
+			<id>
+				<![CDATA[null]]>
+			</id>
+			<message>
+				<![CDATA[If no menu is visible over the blue filter then you did not accuratly click the drop down button, select "back" at the top of the window and try again.]]>
+			</message>
+		</note>
+		<note type="null" hasNext="false" xPos=".3" yPos=".6">
+			<id>
+				<![CDATA[null]]>
+			</id>
+			<message>
+				<![CDATA[If you receive an error stating "no bluetooth devices are connected" then either your bluetooth device is not present, or not correctly detected by the Operating System.]]>
+			</message>
+		</note>
+	</stencil>
+	<stencil title="Manipulating the iCreate" stepsToGoBack="1"> <!-- TutorialID=10 -->
+		<stateCapsule>
+			<![CDATA[existantElements|?|nonExistantElements|?|propertyValues|?|elementPositions|?|]]>
+		</stateCapsule>
+		<note type="null" hasNext="false" xPos="0.006782945736434108" yPos="0.0945945945945946">
+			<id>
+				<![CDATA[null]]>
+			</id>
+			<message>
+				<![CDATA[It may be possible for our connection to the robot to drop or time out. If this happens, an alert will be shown and the connectedTo property set to "none". Reselect the MAC Address from the drop down to retry the connection.]]>
+			</message>
+		</note>
+		<note type="null" hasNext="true" xPos=".4" yPos=".4">
+			<id>
+				<![CDATA[null]]>
+			</id>
+			<message>
+				<![CDATA[If this happens during the introduction, it will be nessesary to back up to the connection section of the tutorial.]]>
+			</message>
+			<message>
+				<![CDATA[Click "next" to continue.]]>
+			</message>
+		</note>
+	</stencil>
+	<stencil title="Manipulating the iCreate" stepsToGoBack="1"> <!-- TutorialID=11 -->
+		<stateCapsule>
+			<![CDATA[existantElements|?|nonExistantElements|?|propertyValues|?|elementPositions|?|]]>
+		</stateCapsule>
+		<note type="null" hasNext="true" xPos=".2" yPos=".4">
+			<id>
+				<![CDATA[null]]>
+			</id>
+			<message>
+				<![CDATA[If the Power LED on the iRobot Create is in it's Red state, then the connection to the robot was successful.]]>
+			</message>
+			<message>
+				<![CDATA[Click "next" to continue.]]>
+			</message>
+		</note>
+	</stencil>
+	<stencil title="Manipulating the iCreate" stepsToGoBack="1"> <!-- TutorialID=12 -->
+		<stateCapsule>
+			<![CDATA[existantElements|?|nonExistantElements|?|propertyValues|?|elementPositions|?|]]>
+		</stateCapsule>
+		<note type="hole" hasNext="false" autoAdvance="true" advanceEvent="mousePress" xPos="200" yPos="1">
+			<id>
+				<![CDATA[details<robot>:tab<1>]]>
+			</id>
+			<message>
+				<![CDATA[Now that we are connected to the iRobot, we are ready to look at the methods it makes available to us.]]>
+			</message>
+			<message>
+				<![CDATA[Click the "methods" tab to continue.]]>
+			</message>
+		</note>
+	</stencil>
+	<stencil title="Manipulating the iCreate" stepsToGoBack="1"> <!-- TutorialID=13 -->
+		<stateCapsule>
+			<![CDATA[existantElements|?|nonExistantElements|?|propertyValues|?|elementPositions|?|]]>
+		</stateCapsule>
+		<note type="frame" hasNext="true" xPos="-120" yPos="-225">
+			<id>
+				<![CDATA[details<robot>]]>
+			</id>
+			<message>
+				<![CDATA[Just as in normal Alice, the methods tab shows us actions that are associated with the iRobot object.]]>
+			</message>
+			<message>
+				<![CDATA[Click "next" to continue.]]>
+			</message>
+		</note>
+	</stencil>
+	<stencil title="Manipulating the iCreate" stepsToGoBack="1"> <!-- TutorialID=14 --> <!-- This needs to be fixed and crate a hole above the "move" method only -->
+		<stateCapsule>
+      		<![CDATA[existantElements|?my first method.__Unnamed0__?|nonExistantElements|?|propertyValues|?my first method.__Unnamed0__.subject:robot?my first method.__Unnamed0__.amount:2?my first method.__Unnamed0__.direction:forward?|elementPositions|?|]]>
+    	</stateCapsule>
+		<note type="hole" hasNext="false" autoAdvance="false" xPos="-50" yPos="-225">
+			<id>
+				<![CDATA[details<robot>:responsePrototype<edu.cmu.cs.stage3.alice.core.response.irobot.create.MoveAnimation>]]>
+			</id>
+			<message>
+				<![CDATA[Lets make the robot move!]]>
+			</message>
+			<message>
+				<![CDATA[Drag the "move" method from the menu...]]>
+			</message>
+		</note>
+		<note type="hole" hasNext="true" xPos="-120" yPos="-225">
+			<id>
+				<![CDATA[editors:element<my first method>:elementTile<my first method>]]>
+			</id>
+			<message>
+				<![CDATA[Drop it into our editor...]]>
+			</message>
+			<message>
+				<![CDATA[Then, choose "forward" then "2" from the drop down menu.]]>
+			</message>
+			<message>
+				<![CDATA[Click "next" to continue.]]>>
+			</message>
+		</note>
+	</stencil>
+	<stencil title="Manipulating the iCreate" stepsToGoBack="1"> <!-- TutorialID=15 -->
+		<stateCapsule>
+			<![CDATA[existantElements|?|nonExistantElements|?|propertyValues|?|elementPositions|?|]]>
+		</stateCapsule>
+		<note type="null" hasNext="true" xPos=".4" yPos=".4">
+			<id>
+				<![CDATA[null]]>
+			</id>
+			<message>
+				<![CDATA[Now that we have a command for our robot to hear, we are ready to make it go!]]>
+			</message>
+			<message>
+				<![CDATA[But before we can make the robot move, we need to change some settings.]]>
+			</message>
+			<message>
+				<![CDATA[Click "next" to continue.]]>
+			</message>
+		</note>
+	</stencil>
+	<stencil title="Manipulating the iCreate" stepsToGoBack="1"> <!-- TutorialID=16 -->
+		<stateCapsule>
+			<![CDATA[existantElements|?|nonExistantElements|?|propertyValues|?|elementPositions|?|]]>
+		</stateCapsule>
+		<note type="hole" hasNext="true" xPos="0" yPos="250">
+			<id>
+				<![CDATA[editMenu]]>
+			</id>
+			<message>
+				<![CDATA[Click the "Edit" portion of the menu.]]>
+			</message>
+			<message>
+				<![CDATA[Select "Use Real Mode" from the drop down menu. This actually allows us to manipulate the real robot.]]>
+			</message>
+			<message>
+				<![CDATA[Click "next" to continue.]]>
+			</message>
+		</note>
+	</stencil>
+	<stencil title="Manipulating the iCreate" stepsToGoBack="1"> <!-- TutorialID=17 -->
+		<stateCapsule>
+			<![CDATA[existantElements|?|nonExistantElements|?|propertyValues|?|elementPositions|?|]]>
+		</stateCapsule>
+		<note type="hole" hasNext="false" autoAdvance="true" advanceEvent="mousePress" xPos="100" yPos="250">
+			<id>
+				<![CDATA[playButton]]>
+			</id>
+			<message>
+				<![CDATA[Now select "Real Play" and watch our iCreate spring to life!]]>
+			</message>
+		</note>
+	</stencil>
+	<stencil title="Manipulating the iCreate" stepsToGoBack="1"> <!-- TutorialID=18 -->
+		<stateCapsule>
+			<![CDATA[existantElements|?|nonExistantElements|?|propertyValues|?|elementPositions|?|]]>
+		</stateCapsule>
+		<note type="null" hasNext="false" xPos=".75" yPos=".25">
+			<id>
+				<![CDATA[null]]>
+			</id>
+			<message>
+				<![CDATA[The iRobot create will follow whatever series of commands are given in the Alice interface.]]>
+			</message>
+			<message>
+				<![CDATA[There are many other methods and inputs available on the robot. Try making your own!]]>
+			</message>
+		</note>
+		<note type="null" hasNext="false" xPos=".75" yPos=".6">
+			<id>
+				<![CDATA[null]]>
+			</id>
+			<message>	
+				<![CDATA[Thanks for taking the tutorial and welcome to the world of robots!]]>
+			</message>
+			<message>
+				<![CDATA[Click the "X" in the movie window then "Exit Tutorial" to return to regular Alice.]]>
+			</message>
+		</note>
+	</stencil>
+</stencilStack>
