@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <key visibility="open">
+        <name>edu</name>
+        <key visibility="open">
+            <name>cmu</name>
+            <key visibility="open">
+                <name>cs</name>
+                <key visibility="open">
+                    <name>stage3</name>
+                    <key visibility="open">
+                        <name>alice</name>
+                        <key visibility="open">
+                            <name>authoringtool</name>
+                            <key visibility="open">
+                                <name>doProfiling</name>
+                                <value>false</value>
+                            </key>
+                            <key visibility="open">
+                                <name>clearStdOutOnRun</name>
+                                <value>true</value>
+                            </key>
+                            <key visibility="open">
+                                <name>screenCapture</name>
+                                <key visibility="open">
+                                    <name>informUser</name>
+                                    <value>true</value>
+                                </key>
+                                <key visibility="open">
+                                    <name>numDigits</name>
+                                    <value>2</value>
+                                </key>
+                                <key visibility="open">
+                                    <name>directory</name>
+                                    <value>C:\Users\engleadmin\Desktop</value>
+                                </key>
+                                <key visibility="open">
+                                    <name>baseName</name>
+                                    <value>capture</value>
+                                </key>
+                                <key visibility="open">
+                                    <name>codec</name>
+                                    <value>jpeg</value>
+                                </key>
+                            </key>
+                            <key visibility="open">
+                                <name>showObjectLoadFeedback</name>
+                                <value>true</value>
+                            </key>
+                            <key visibility="open">
+                                <name>backgroundColor</name>
+                                <value>edu.cmu.cs.stage3.alice.scenegraph.Color[r=0.0,g=0.30588236,b=0.59607846,a=1.0]</value>
+                            </key>
+                            <key visibility="open">
+                                <name>mainWindowBounds</name>
+                                <value>80, 0, 1200, 994</value>
+                            </key>
+                            <key visibility="open">
+                                <name>gui</name>
+                                <key visibility="open">
+                                    <name>pickUpTiles</name>
+                                    <value>true</value>
+                                </key>
+                                <key visibility="open">
+                                    <name>useAlphaTiles</name>
+                                    <value>false</value>
+                                </key>
+                            </key>
+                            <key visibility="open">
+                                <name>showStartUpDialog</name>
+                                <value>true</value>
+                            </key>
+                            <key visibility="open">
+                                <name>directories</name>
+                                <key visibility="open">
+                                    <name>templatesDirectory</name>
+                                    <value>templateWorlds</value>
+                                </key>
+                                <key visibility="open">
+                                    <name>importDirectory</name>
+                                    <value>C:\Users\engleadmin\Desktop</value>
+                                </key>
+                                <key visibility="open">
+                                    <name>examplesDirectory</name>
+                                    <value>exampleWorlds</value>
+                                </key>
+                                <key visibility="open">
+                                    <name>charactersDirectory</name>
+                                </key>
+                                <key visibility="open">
+                                    <name>textbookExamplesDirectory</name>
+                                    <value>textbookExampleWorlds</value>
+                                </key>
+                                <key visibility="open">
+                                    <name>worldsDirectory</name>
+                                    <value>C:\Users\engleadmin\Desktop</value>
+                                </key>
+                            </key>
+                            <key visibility="open">
+                                <name>maxRecentlyUsedValues</name>
+                                <value>5</value>
+                            </key>
+                            <key visibility="open">
+                                <name>doNotShowUnhookedMethodWarning</name>
+                                <value>false</value>
+                            </key>
+                            <key visibility="open">
+                                <name>showWebWarningDialog</name>
+                                <value>true</value>
+                            </key>
+                            <key visibility="open">
+                                <name>enableScripting</name>
+                                <value>false</value>
+                            </key>
+                            <key visibility="open">
+                                <name>showStartUpDialog_OpenTab</name>
+                                <value>2</value>
+                            </key>
+                            <key visibility="open">
+                                <name>importers</name>
+                                <key visibility="open">
+                                    <name>aseImporter</name>
+                                    <key visibility="open">
+                                    <name>createUVsIfNoneExist</name>
+                                    <value>true</value>
+                                    </key>
+                                    <key visibility="open">
+                                    <name>colorToWhiteWhenTextured</name>
+                                    <value>true</value>
+                                    </key>
+                                    <key visibility="open">
+                                    <name>groupMultipleRootObjects</name>
+                                    <value>true</value>
+                                    </key>
+                                    <key visibility="open">
+                                    <name>createNormalsIfNoneExist</name>
+                                    <value>true</value>
+                                    </key>
+                                    <key visibility="open">
+                                    <name>useSpecular</name>
+                                    <value>false</value>
+                                    </key>
+                                </key>
+                            </key>
+                            <key visibility="open">
+                                <name>promptToSaveInterval</name>
+                                <value>15</value>
+                            </key>
+                            <key visibility="open">
+                                <name>recentWorlds</name>
+                                <key visibility="open">
+                                    <name>maxWorlds</name>
+                                    <value>8</value>
+                                </key>
+                                <key visibility="open">
+                                    <name>worlds</name>
+                                    <value>
+                                    <list/>
+                                    </value>
+                                </key>
+                            </key>
+                            <key visibility="open">
+                                <name>watcherPanelEnabled</name>
+                                <value>false</value>
+                            </key>
+                            <key visibility="open">
+                                <name>fontSize</name>
+                                <value>12</value>
+                            </key>
+                            <key visibility="open">
+                                <name>enableHighContrastMode</name>
+                                <value>false</value>
+                            </key>
+                            <key visibility="open">
+                                <name>useSingleFileLoadStore</name>
+                                <value>true</value>
+                            </key>
+                            <key visibility="open">
+                                <name>saveInfiniteBackups</name>
+                                <value>false</value>
+                            </key>
+                            <key visibility="open">
+                                <name>rendering</name>
+                                <key visibility="open">
+                                    <name>renderWindowMatchesSceneEditor</name>
+                                    <value>true</value>
+                                </key>
+                                <key visibility="open">
+                                    <name>runtimeScratchPadHeight</name>
+                                    <value>300</value>
+                                </key>
+                                <key visibility="open">
+                                    <name>deleteFiles</name>
+                                    <value>true</value>
+                                </key>
+                                <key visibility="open">
+                                    <name>useBorderlessWindow</name>
+                                    <value>false</value>
+                                </key>
+                                <key visibility="open">
+                                    <name>runtimeScratchPadEnabled</name>
+                                    <value>false</value>
+                                </key>
+                                <key visibility="open">
+                                    <name>renderWindowBounds</name>
+                                    <value>400, 332, 480, 360</value>
+                                </key>
+                                <key visibility="open">
+                                    <name>orderedRendererList</name>
+                                    <value>
+                                    <list>
+                                    <item>edu.cmu.cs.stage3.alice.scenegraph.renderer.directx7renderer.Renderer</item>
+                                    <item>edu.cmu.cs.stage3.alice.scenegraph.renderer.joglrenderer.Renderer</item>
+                                    <item>edu.cmu.cs.stage3.alice.scenegraph.renderer.nullrenderer.Renderer</item>
+                                    </list>
+                                    </value>
+                                </key>
+                                <key visibility="open">
+                                    <name>showFPS</name>
+                                    <value>false</value>
+                                </key>
+                                <key visibility="open">
+                                    <name>constrainRenderDialogAspectRatio</name>
+                                    <value>true</value>
+                                </key>
+                                <key visibility="open">
+                                    <name>ensureRenderDialogIsOnScreen</name>
+                                    <value>true</value>
+                                </key>
+                                <key visibility="open">
+                                    <name>forceSoftwareRendering</name>
+                                    <value>false</value>
+                                </key>
+                            </key>
+                            <key visibility="open">
+                                <name>saveThumbnailWithWorld</name>
+                                <value>true</value>
+                            </key>
+                            <key visibility="open">
+                                <name>maximumWorldBackupCount</name>
+                                <value>5</value>
+                            </key>
+                            <key visibility="open">
+                                <name>showWorldStats</name>
+                                <value>false</value>
+                            </key>
+                            <key visibility="open">
+                                <name>loadSavedTabs</name>
+                                <value>false</value>
+                            </key>
+                            <key visibility="open">
+                                <name>numberOfClipboards</name>
+                                <value>1</value>
+                            </key>
+                            <key visibility="open">
+                                <name>resourceFile</name>
+                                <value>Alice Style.py</value>
+                            </key>
+                        </key>
+                    </key>
+                </key>
+            </key>
+        </key>
+    </key>
+</configuration>
