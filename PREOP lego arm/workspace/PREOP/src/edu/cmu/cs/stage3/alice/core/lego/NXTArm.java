@@ -1,3 +1,6 @@
+/**
+ * The class for the NXTArm, which will eventually be any kind of robot.
+ */
 package edu.cmu.cs.stage3.alice.core.lego;
 
 /*
@@ -29,7 +32,11 @@ import lejos.pc.comm.NXTInfo;
 public class NXTArm extends Model {
 	private static NXTCommand nxtCommand = new NXTCommand();
 	private NXTComm nxtComm;
-	private RemoteMotor swivelMotor, reachMotor, clawMotor;
+	//private RemoteMotor swivelMotor, reachMotor, clawMotor;
+	private RemoteMotor[] connectedMotors = new RemoteMotor[3];
+	private int[] gearFactors = new int[3];
+	private int position[] = new int[connectedMotors.length];
+	private final int MAX_MOTOR_SPEED = 99999;
 
 	public NXTArm() {
 		try {
@@ -48,6 +55,8 @@ public class NXTArm extends Model {
 			e.printStackTrace();
 		}
 		initializeMotors();
+		initializeGearFactors();
+		initializePose();
 		connected = true;
 	}
 
@@ -73,16 +82,38 @@ public class NXTArm extends Model {
 		nxtCommand.setNXTComm(nxtComm);
 	}
 
-	private final int SWIVEL_MOTOR_ID = 0, REACH_MOTOR_ID = 1,
-					  CLAW_MOTOR_ID = 2;
-	private final int MAX_MOTOR_SPEED = 99999;
+
+	
+	/**
+	 * Set up the motors and set their speeds to the max speed. 
+	 */
 	private void initializeMotors() {
-		swivelMotor = new RemoteMotor(nxtCommand, SWIVEL_MOTOR_ID);
-		swivelMotor.setSpeed(MAX_MOTOR_SPEED);
-		reachMotor = new RemoteMotor(nxtCommand, REACH_MOTOR_ID);
-		reachMotor.setSpeed(MAX_MOTOR_SPEED);
-		clawMotor = new RemoteMotor(nxtCommand, CLAW_MOTOR_ID);
-		clawMotor.setSpeed(MAX_MOTOR_SPEED);
+		for(int i = 0; i<connectedMotors.length;++i)
+		{
+			connectedMotors[i] = new RemoteMotor(nxtCommand, i);
+			connectedMotors[i].setSpeed(MAX_MOTOR_SPEED);
+		}
+	}
+	
+	/**
+	 * Hard coded for now. Motor A (0) gets 167, B gets 27, and C gets 37.
+	 */
+	private void initializeGearFactors()
+	{
+		gearFactors[0]=167;
+		gearFactors[1]=27;
+		gearFactors[2]=37;
+	}
+	
+	/**
+	 * Set positions to 0.
+	 */
+	private void initializePose()
+	{
+		for(int i = 0; i < position.length; ++i)
+		{
+			position[i] = 0;
+		}
 	}
 
 	protected void disconnect() {
@@ -95,7 +126,18 @@ public class NXTArm extends Model {
 		}
 	}
 
-	private final int SWIVEL_GEAR_FACTOR = 167;
+	/**
+	 * 
+	 * @param motorNum: specify which motor you want to rotate by number.
+	 * @param angle: give the angle you want to move the motor. 
+	 * 	Positive angles move left and negative angles move right
+	 */
+	public void move(int motorNum, double angle)
+	{
+			RemoteMotor motor = connectedMotors[motorNum];
+			motor.rotate((int) angle * 360 * gearFactors[motorNum], true); 
+	}
+	/*private final int SWIVEL_GEAR_FACTOR = 167;
 	public void swivelLeft(double angle) {
 		swivelMotor.rotate((int) (angle * 360 * SWIVEL_GEAR_FACTOR), true);
 	}
@@ -120,25 +162,32 @@ public class NXTArm extends Model {
 
 	public void closeClaw() {
 		clawMotor.rotate(CLAW_MOTOR_ROTATION_AMOUNT, true);
-	}
+	}*/
 
-	private int swivelMotorPosition, reachMotorPosition, clawMotorPosition;
+	//private int firstMotorPosition, secondMotorPosition, thirdMotorPosition;
+	
+	/**
+	 * Remember the pose of the motors. The revertToRecordedPose() function returns to this pose.
+	 */
 	public void recordPose() {
-		swivelMotorPosition = swivelMotor.getTachoCount();
-		reachMotorPosition = reachMotor.getTachoCount();
-		clawMotorPosition = clawMotor.getTachoCount();
+		for(int i = 0; i<position.length; ++i)
+		{
+			position[i] = connectedMotors[i].getTachoCount();
+		}
 	}
 
 	public void revertToRecordedPose() {
 		// TODO: The following 'if' statements are a hack. The rotateTo method
 		// is defective and cannot take a value that is exactly its current
 		// position
-		if (swivelMotor.getTachoCount() != swivelMotorPosition)
-			swivelMotor.rotateTo(swivelMotorPosition, true);
-		if (reachMotor.getTachoCount() != reachMotorPosition)
-			reachMotor.rotateTo(reachMotorPosition, true);
-		if (clawMotor.getTachoCount() != clawMotorPosition)
-			clawMotor.rotateTo(clawMotorPosition, true);
+
+		for(int i = 0; i<position.length; ++i)
+		{
+			if(connectedMotors[i].getTachoCount() != position[i])
+			{
+				connectedMotors[i].rotateTo(position[i], true);
+			}
+		}
 	}
 
 	protected void internalRelease(int pass) {
@@ -191,9 +240,9 @@ public class NXTArm extends Model {
 			NXTArm arm = new NXTArm();
 			arm.connect("6831");
 			arm.recordPose();
-			arm.openClaw();
+			//arm.openClaw();
 			br.readLine();
-			arm.closeClaw();
+			//arm.closeClaw();
 			arm.revertToRecordedPose();
 			br.readLine();
 			arm.disconnect();
