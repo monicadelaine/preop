@@ -1,16 +1,12 @@
 /**
  * The class for the NXTArm, which will eventually be any kind of robot.
+ * A robot consists of up to 3 motors and up to 4 sensors. This class is used 
+ * to interact with these motors and sensors. 
+ * 
+ * @author Trey Davis, Jeff Byrd
  */
 package edu.cmu.cs.stage3.alice.core.lego;
 
-/*
- * This class uses the LEJOS Java library to move the Lego NXT arm. "Swivel" 
- * here refers to the motion that rotates the entire arm. "Reach" refers to the
- * motion of the arm moving forward and lowering the claw. "Claw" refers to the 
- * appendage that constitutes the "grip" or "hand" of the arm.
- * 
- * @author Trey Davis
- */
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -24,6 +20,7 @@ import edu.cmu.cs.stage3.util.HowMuch;
 
 import lejos.nxt.remote.NXTCommand;
 import lejos.nxt.remote.RemoteMotor;
+import lejos.nxt.remote.InputValues;
 import lejos.pc.comm.NXTComm;
 import lejos.pc.comm.NXTCommException;
 import lejos.pc.comm.NXTCommFactory;
@@ -32,11 +29,12 @@ import lejos.pc.comm.NXTInfo;
 public class NXTArm extends Model {
 	private static NXTCommand nxtCommand = new NXTCommand();
 	private NXTComm nxtComm;
-	//private RemoteMotor swivelMotor, reachMotor, clawMotor;
 	private RemoteMotor[] connectedMotors = new RemoteMotor[3];
 	private int[] gearFactors = new int[3];
 	private int position[] = new int[connectedMotors.length];
 	private final int MAX_MOTOR_SPEED = 99999;
+	
+	private InputValues[] connectedSensors = new InputValues[5];
 
 	public NXTArm() {
 		try {
@@ -57,6 +55,7 @@ public class NXTArm extends Model {
 		initializeMotors();
 		initializeGearFactors();
 		initializePose();
+		initializeSensors();
 		connected = true;
 	}
 
@@ -97,6 +96,7 @@ public class NXTArm extends Model {
 	
 	/**
 	 * Hard coded for now. Motor A (0) gets 167, B gets 27, and C gets 37.
+	 * What is a good way of input?
 	 */
 	private void initializeGearFactors()
 	{
@@ -116,6 +116,20 @@ public class NXTArm extends Model {
 		}
 	}
 
+	/**
+	 * Sets up the sensors 1 through 4. It also asks for each sensor's scaledValue
+	 * because, according to the documentation, getting the scaled value "starts working
+	 * after the first call to sensor."
+	 */
+	private void initializeSensors()
+	{
+		for(int i = 1; i< connectedSensors.length;++i)
+		{
+			connectedSensors[i] = new InputValues();
+			int j =connectedSensors[i].scaledValue;
+			
+		}
+	}
 	protected void disconnect() {
 		if(connected) {
 			try {
@@ -136,35 +150,42 @@ public class NXTArm extends Model {
 	{
 			RemoteMotor motor = connectedMotors[motorNum];
 			motor.rotate((int) angle * 360 * gearFactors[motorNum], true); 
+			//why * 360?
 	}
-	/*private final int SWIVEL_GEAR_FACTOR = 167;
-	public void swivelLeft(double angle) {
-		swivelMotor.rotate((int) (angle * 360 * SWIVEL_GEAR_FACTOR), true);
+	
+	/**
+	 * Gets the scaled value of a specified sensor. For touch sensor, 0 is off and 
+	 * 1 is on. 
+	 * @param sensorNum: the number of the sensor being read. Ports are labeled 1 through 4,
+	 * so this number must be between 1 and 4.
+	 * @return the scaled value of the specified sensor
+	 */
+	public short getScaledSensorValue(int sensorNum)
+	{
+		return connectedSensors[sensorNum].scaledValue;
 	}
-
-	public void swivelRight(double angle) {
-		swivelMotor.rotate((int) (-angle * 360 * SWIVEL_GEAR_FACTOR), true);
+	
+	/**
+	 * Gets the raw value of a specified sensor. 
+	 * @param sensorNum: the number of the sensor to read, between 1 and 4.
+	 * @return the raw value from the sensor
+	 */
+	public int getRawSensorValue(int sensorNum)
+	{
+		return connectedSensors[sensorNum].rawADValue;
 	}
-
-	private final int REACH_GEAR_FACTOR = 27;
-	public void reachForward(double reachAmount) {
-		reachMotor.rotate((int) (-reachAmount * 360 * REACH_GEAR_FACTOR), true);
+	
+	/**
+	 * Gets the normalized value of the specified sensor. The documentation says 
+	 * this number will be between 0 and 1023, but it is unclear. 
+	 * @param sensorNum: the number of the sensor being read, according to the 
+	 * label of the port
+	 * @return the normalized value of the specified sensor
+	 */
+	public int getNormalizedSensorValue(int sensorNum)
+	{
+		return connectedSensors[sensorNum].normalizedADValue;
 	}
-
-	public void reachBackward(double reachAmount) {
-		reachMotor.rotate((int) (reachAmount * 360 * REACH_GEAR_FACTOR), true);
-	}
-
-	private final int CLAW_MOTOR_ROTATION_AMOUNT = 37;
-	public void openClaw() {
-		clawMotor.rotate(-CLAW_MOTOR_ROTATION_AMOUNT, true);
-	}
-
-	public void closeClaw() {
-		clawMotor.rotate(CLAW_MOTOR_ROTATION_AMOUNT, true);
-	}*/
-
-	//private int firstMotorPosition, secondMotorPosition, thirdMotorPosition;
 	
 	/**
 	 * Remember the pose of the motors. The revertToRecordedPose() function returns to this pose.
