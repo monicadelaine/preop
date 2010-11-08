@@ -34,7 +34,7 @@ public class NXTArm extends Model {
 	private int position[] = new int[connectedMotors.length];
 	private final int MAX_MOTOR_SPEED = 99999;
 	
-	private InputValues[] connectedSensors = new InputValues[5];
+	public InputValues[] connectedSensors = new InputValues[5];
 
 	public NXTArm() {
 		try {
@@ -100,6 +100,7 @@ public class NXTArm extends Model {
 	 */
 	private void initializeGearFactors()
 	{
+		//TODO: un-hard-code these
 		gearFactors[0]=167;
 		gearFactors[1]=27;
 		gearFactors[2]=37;
@@ -126,6 +127,7 @@ public class NXTArm extends Model {
 		for(int i = 1; i< connectedSensors.length;++i)
 		{
 			connectedSensors[i] = new InputValues();
+			connectedSensors[i].inputPort = i;
 			int j =connectedSensors[i].scaledValue;
 			
 		}
@@ -149,10 +151,15 @@ public class NXTArm extends Model {
 	public void move(int motorNum, double angle)
 	{
 			RemoteMotor motor = connectedMotors[motorNum];
-			motor.rotate((int) angle * 360 * gearFactors[motorNum], true); 
-			//why * 360?
+			motor.rotate((int) angle * gearFactors[motorNum], true); 
+			//TODO: why * 360?
 	}
 	
+	public void moveTo(int motorNum, double angle)
+	{
+		RemoteMotor motor = connectedMotors[motorNum];
+		motor.rotateTo((int)angle*gearFactors[motorNum], true);
+	}
 	/**
 	 * Gets the scaled value of a specified sensor. For touch sensor, 0 is off and 
 	 * 1 is on. 
@@ -198,7 +205,7 @@ public class NXTArm extends Model {
 	}
 
 	public void revertToRecordedPose() {
-		// TODO: The following 'if' statements are a hack. The rotateTo method
+		// The following 'if' statements are a hack. The rotateTo method
 		// is defective and cannot take a value that is exactly its current
 		// position
 
@@ -261,12 +268,47 @@ public class NXTArm extends Model {
 			NXTArm arm = new NXTArm();
 			arm.connect("6831");
 			arm.recordPose();
-			//arm.openClaw();
+			System.out.println("Press Enter for Motor 1:");
 			br.readLine();
-			//arm.closeClaw();
+			arm.move(0, 9.0);
+			System.out.println("Press Enter for Motor 1 moveTo:");
+			br.readLine();
+			arm.moveTo(0, 0.0);
+			System.out.println("Press Enter for Motor 2:");
+			br.readLine();
+			arm.move(1, -25.0);
+			System.out.println("Press Enter for Motor 3:");
+			br.readLine();
+			arm.move(2, 5.0);
+			System.out.println("Press Enter to revert to original positon:");
+			br.readLine();
+			//br.readLine();
 			arm.revertToRecordedPose();
+			System.out.println("Press Enter Sensor 1:");
 			br.readLine();
+			System.out.println("Raw 1: "+arm.getRawSensorValue(1));
+			System.out.println("Scaled 1:"+arm.getScaledSensorValue(1));
+			System.out.println("Scaled 1:"+arm.getNormalizedSensorValue(1));
+			System.out.println("should be 1: "+arm.connectedSensors[1].inputPort);
+			/*while(true)
+			{
+				if(arm.getScaledSensorValue(1) == 1)
+					break;
+			}*/
+			System.out.println("Press Enter Sensor 2:");
+			br.readLine();
+			System.out.println("Raw 2: "+arm.getRawSensorValue(2));
+			System.out.println("Scaled 2:"+arm.getScaledSensorValue(2));
+			System.out.println("Scaled 1:"+arm.getNormalizedSensorValue(2));
+			System.out.println("should be 2: "+arm.connectedSensors[2].inputPort);
+			System.out.println("Press Enter Sensor 3:");
+			br.readLine();
+			System.out.println("Raw 3: "+arm.getRawSensorValue(3));
+			System.out.println("Scaled 3:"+arm.getScaledSensorValue(3));
+			System.out.println("Scaled 1:"+arm.getNormalizedSensorValue(3));
+			System.out.println("should be 3: "+arm.connectedSensors[3].inputPort);
 			arm.disconnect();
+		
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
