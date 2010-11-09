@@ -95,15 +95,15 @@ public class NXTArm extends Model {
 	}
 	
 	/**
-	 * Hard coded for now. Motor A (0) gets 167, B gets 27, and C gets 37.
+	 * Hard coded for now. Motor A (0) gets 165, B gets 27, and C gets 37.
 	 * What is a good way of input?
 	 */
 	private void initializeGearFactors()
 	{
 		//TODO: un-hard-code these
-		gearFactors[0]=167;
-		gearFactors[1]=27;
-		gearFactors[2]=37;
+		gearFactors[0]=165;
+		gearFactors[1]=72;
+		gearFactors[2]=1;
 	}
 	
 	/**
@@ -127,7 +127,7 @@ public class NXTArm extends Model {
 		for(int i = 1; i< connectedSensors.length;++i)
 		{
 			connectedSensors[i] = new InputValues();
-			connectedSensors[i].inputPort = i;
+			connectedSensors[i].inputPort = i; //i-1?
 			int j =connectedSensors[i].scaledValue;
 			
 		}
@@ -146,7 +146,8 @@ public class NXTArm extends Model {
 	 * 
 	 * @param motorNum: specify which motor you want to rotate by number.
 	 * @param angle: give the angle you want to move the motor. 
-	 * 	Positive angles move left and negative angles move right
+	 * 	Positive angles move the motor clockwise and negative angles move 
+	 * counterclockwise
 	 */
 	public void move(int motorNum, double angle)
 	{
@@ -204,6 +205,7 @@ public class NXTArm extends Model {
 		}
 	}
 
+	//TODO: Write Javadoc for this. Figure out why claw won't revert.
 	public void revertToRecordedPose() {
 		// The following 'if' statements are a hack. The rotateTo method
 		// is defective and cannot take a value that is exactly its current
@@ -270,16 +272,16 @@ public class NXTArm extends Model {
 			arm.recordPose();
 			System.out.println("Press Enter for Motor 1:");
 			br.readLine();
-			arm.move(0, 9.0);
+			arm.move(0, -9.0);
 			System.out.println("Press Enter for Motor 1 moveTo:");
 			br.readLine();
 			arm.moveTo(0, 0.0);
 			System.out.println("Press Enter for Motor 2:");
 			br.readLine();
-			arm.move(1, -25.0);
+			arm.move(1, -75.0);
 			System.out.println("Press Enter for Motor 3:");
 			br.readLine();
-			arm.move(2, 5.0);
+			arm.move(2, 90.0);
 			System.out.println("Press Enter to revert to original positon:");
 			br.readLine();
 			//br.readLine();
