@@ -21,6 +21,7 @@ import edu.cmu.cs.stage3.util.HowMuch;
 import lejos.nxt.remote.NXTCommand;
 import lejos.nxt.remote.RemoteMotor;
 import lejos.nxt.remote.InputValues;
+import lejos.nxt.remote.RemoteSensorPort;
 import lejos.pc.comm.NXTComm;
 import lejos.pc.comm.NXTCommException;
 import lejos.pc.comm.NXTCommFactory;
@@ -34,7 +35,8 @@ public class NXTArm extends Model {
 	private int position[] = new int[connectedMotors.length];
 	private final int MAX_MOTOR_SPEED = 99999;
 	
-	public InputValues[] connectedSensors = new InputValues[5];
+	public RemoteSensorPort[] connectedSensors = new RemoteSensorPort[5];
+	
 
 	public NXTArm() {
 		try {
@@ -126,9 +128,9 @@ public class NXTArm extends Model {
 	{
 		for(int i = 1; i< connectedSensors.length;++i)
 		{
-			connectedSensors[i] = new InputValues();
-			connectedSensors[i].inputPort = i; //i-1?
-			int j =connectedSensors[i].scaledValue;
+			connectedSensors[i] = new RemoteSensorPort(nxtCommand, i);
+			//connectedSensors[i].inputPort = i; //i-1?
+			//int j =connectedSensors[i].
 			
 		}
 	}
@@ -168,10 +170,11 @@ public class NXTArm extends Model {
 	 * so this number must be between 1 and 4.
 	 * @return the scaled value of the specified sensor
 	 */
-	public short getScaledSensorValue(int sensorNum)
-	{
-		return connectedSensors[sensorNum].scaledValue;
-	}
+	//public short getScaledSensorValue(int sensorNum)
+//	{
+//		return connectedSensors[sensorNum].scaledValue;
+//	}
+	
 	
 	/**
 	 * Gets the raw value of a specified sensor. 
@@ -180,7 +183,7 @@ public class NXTArm extends Model {
 	 */
 	public int getRawSensorValue(int sensorNum)
 	{
-		return connectedSensors[sensorNum].rawADValue;
+		return connectedSensors[sensorNum].readRawValue();
 	}
 	
 	/**
@@ -192,7 +195,7 @@ public class NXTArm extends Model {
 	 */
 	public int getNormalizedSensorValue(int sensorNum)
 	{
-		return connectedSensors[sensorNum].normalizedADValue;
+		return connectedSensors[sensorNum].readValue();
 	}
 	
 	/**
@@ -202,10 +205,15 @@ public class NXTArm extends Model {
 		for(int i = 0; i<position.length; ++i)
 		{
 			position[i] = connectedMotors[i].getTachoCount();
+			System.out.println(position[i]);
 		}
 	}
 
-	//TODO: Write Javadoc for this. Figure out why claw won't revert.
+	//TODO: Figure out why claw won't revert.
+	/**
+	 * Return the robot to the pose that was recorded by recordPose()
+	 * If recordPose() was never used, then it will return to 0 positions.
+	 */
 	public void revertToRecordedPose() {
 		// The following 'if' statements are a hack. The rotateTo method
 		// is defective and cannot take a value that is exactly its current
@@ -281,7 +289,7 @@ public class NXTArm extends Model {
 			arm.move(1, -75.0);
 			System.out.println("Press Enter for Motor 3:");
 			br.readLine();
-			arm.move(2, 90.0);
+			arm.move(2, -45.0);
 			System.out.println("Press Enter to revert to original positon:");
 			br.readLine();
 			//br.readLine();
@@ -289,9 +297,9 @@ public class NXTArm extends Model {
 			System.out.println("Press Enter Sensor 1:");
 			br.readLine();
 			System.out.println("Raw 1: "+arm.getRawSensorValue(1));
-			System.out.println("Scaled 1:"+arm.getScaledSensorValue(1));
+			//System.out.println("Scaled 1:"+arm.getScaledSensorValue(1));
 			System.out.println("Scaled 1:"+arm.getNormalizedSensorValue(1));
-			System.out.println("should be 1: "+arm.connectedSensors[1].inputPort);
+			System.out.println("should be 1: "+arm.connectedSensors[1].getMode());
 			/*while(true)
 			{
 				if(arm.getScaledSensorValue(1) == 1)
@@ -300,15 +308,15 @@ public class NXTArm extends Model {
 			System.out.println("Press Enter Sensor 2:");
 			br.readLine();
 			System.out.println("Raw 2: "+arm.getRawSensorValue(2));
-			System.out.println("Scaled 2:"+arm.getScaledSensorValue(2));
+			//System.out.println("Scaled 2:"+arm.getScaledSensorValue(2));
 			System.out.println("Scaled 1:"+arm.getNormalizedSensorValue(2));
-			System.out.println("should be 2: "+arm.connectedSensors[2].inputPort);
+			System.out.println("should be 2: "+arm.connectedSensors[2].getId());
 			System.out.println("Press Enter Sensor 3:");
 			br.readLine();
 			System.out.println("Raw 3: "+arm.getRawSensorValue(3));
-			System.out.println("Scaled 3:"+arm.getScaledSensorValue(3));
+			//System.out.println("Scaled 3:"+arm.getScaledSensorValue(3));
 			System.out.println("Scaled 1:"+arm.getNormalizedSensorValue(3));
-			System.out.println("should be 3: "+arm.connectedSensors[3].inputPort);
+			System.out.println("should be 3: "+arm.connectedSensors[3].getId());
 			arm.disconnect();
 		
 		} catch (Exception e) {
