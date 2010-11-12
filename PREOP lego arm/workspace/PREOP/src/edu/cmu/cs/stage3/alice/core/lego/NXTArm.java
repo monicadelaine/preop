@@ -18,10 +18,13 @@ import edu.cmu.cs.stage3.alice.core.property.AddressProperty;
 import edu.cmu.cs.stage3.io.DirectoryTreeStorer;
 import edu.cmu.cs.stage3.util.HowMuch;
 
+import lejos.nxt.LightSensor;
 import lejos.nxt.SensorPort;
+import lejos.nxt.SoundSensor;
+import lejos.nxt.TouchSensor;
+import lejos.nxt.UltrasonicSensor;
 import lejos.nxt.remote.NXTCommand;
 import lejos.nxt.remote.RemoteMotor;
-import lejos.nxt.remote.RemoteSensorPort;
 import lejos.pc.comm.NXTComm;
 import lejos.pc.comm.NXTCommException;
 import lejos.pc.comm.NXTCommFactory;
@@ -35,8 +38,12 @@ public class NXTArm extends Model {
 	private int position[] = new int[connectedMotors.length];
 	private final int MAX_MOTOR_SPEED = 99999;
 	
-	public RemoteSensorPort[] connectedSensors = new RemoteSensorPort[5];
-	public SensorPort port;
+	//public  static SensorPort port;
+	public TouchSensor touch = new TouchSensor(SensorPort.S1);
+	public SoundSensor sound = new SoundSensor(SensorPort.S2);
+	public LightSensor light = new LightSensor(SensorPort.S3);
+	public UltrasonicSensor us = new UltrasonicSensor(SensorPort.S4);
+	
 	
 
 	public NXTArm() {
@@ -58,7 +65,6 @@ public class NXTArm extends Model {
 		initializeMotors();
 		initializeGearFactors();
 		initializePose();
-		initializeSensors();
 		connected = true;
 	}
 
@@ -132,22 +138,7 @@ public class NXTArm extends Model {
 		}
 	}
 
-	/**
-	 * Sets up the sensors 1 through 4. It also asks for each sensor's scaledValue
-	 * because, according to the documentation, getting the scaled value "starts working
-	 * after the first call to sensor."
-	 */
-	private void initializeSensors()
-	{
-		for(int i = 1; i< connectedSensors.length;++i)
-		{
-			//connectedSensors[i] = new RemoteSensorPort(nxtCommand, i);
-			//connectedSensors[i].
-			//connectedSensors[i].inputPort = i; //i-1?
-			//int j =connectedSensors[i].
-			
-		}
-	}
+	
 	protected void disconnect() {
 		if(connected) {
 			try {
@@ -222,18 +213,17 @@ public class NXTArm extends Model {
 	{
 		switch(sensorNum)
 		{
-		case(1): return port.S1.readRawValue(); 
-		case(2): return port.S2.readRawValue(); 
-		case(3): return port.S3.readRawValue(); 
-		case(4): return port.S4.readRawValue(); 
+		case(1): if(touch.isPressed()) return 1; else return 0; 
+		case(2): return SensorPort.S2.readRawValue(); 
+		case(3): return SensorPort.S3.readRawValue(); 
+		case(4): return SensorPort.S4.readRawValue(); 
 		default:
 				return 0;
 		}
 	}
 	
 	/**
-	 * Gets the value of the specified sensor. The documentation says 
-	 * this number will be between 0 and 1023, but it is unclear. 
+	 * Gets the value of the specified sensor. 
 	 * @param sensorNum: the number of the sensor being read, according to the 
 	 * label of the port
 	 * @return the value of the specified sensor
@@ -242,15 +232,46 @@ public class NXTArm extends Model {
 	{
 		switch(sensorNum)
 		{
-		case(1): return port.S1.readValue(); 
-		case(2): return port.S2.readValue(); 
-		case(3): return port.S3.readValue(); 
-		case(4): return port.S4.readValue(); 
+		case(1): if(touch.isPressed()) return 1; else return 0; 
+		case(2): return sound.readValue(); 
+		case(3): return light.readValue(); 
+		case(4): return us.getDistance(); 
 		default:
 				return 0;
 		}
 	}
 	
+	/**
+	 * Gets the normalized value of the sensor [0-1023]. 
+	 * @param sensorNum: the number of the sensor being read according to the
+	 * label on the port.
+	 * @return The normalized value of the specified sensor; [0 - 1023]
+	 */
+	public int getNormalizedValue(int sensorNum)
+	{
+		switch(sensorNum)
+		{
+		case(1): if(touch.isPressed()) return 1; else return 0; 
+		case(2): return sound.readValue(); 
+		case(3): return light.readNormalizedValue(); 
+		case(4): return us.getDistance(); 
+		default:
+				return 0;
+		}
+	}
+	
+	public boolean getBooleanValue(int sensorNum)
+	{
+		switch(sensorNum)
+		{
+		case(1): return touch.isPressed(); 
+		case(2): return sound.readValue() != 0; 
+		case(3): return light.readValue() != 0; 
+		case(4): return us.getDistance() < 255;
+		default:
+				return false;
+		}
+	}
 	/**
 	 * Remember the positions of the motors. 
 	 * The revertToRecordedPose() function returns to this pose.
@@ -362,7 +383,7 @@ public class NXTArm extends Model {
 			System.out.println("Press Enter for Motor 3:");
 			br.readLine();
 			arm.move(2, 55.0);
-			System.out.println("Press Enter to revert to original positon:");
+			System.out.println("Press Enter to revert to original position:");
 			br.readLine();
 			arm.move(0,55);
 			br.readLine();
@@ -370,10 +391,10 @@ public class NXTArm extends Model {
 			arm.revertToRecordedPose();
 			*/
 			System.out.println("Press Enter Sensor 1:");
-			arm.move(0, -9.0); //to prove there is a connection
+			//arm.move(0, -9.0); //to prove there is a connection
 			br.readLine();
 			System.out.println("Raw 1: "+arm.getRawSensorValue(1));
-			//System.out.println("Scaled 1:"+arm.getScaledSensorValue(1));
+			System.out.println("Scaled 1:"+arm.getNormalizedValue(1));
 			System.out.println("Scaled 1:"+arm.getSensorValue(1));
 			/*while(true)
 			{
@@ -381,16 +402,16 @@ public class NXTArm extends Model {
 					break;
 			}*/
 			System.out.println("Press Enter Sensor 2:");
-			//br.readLine();
+			br.readLine();
 			System.out.println("Raw 2: "+arm.getRawSensorValue(2));
-			//System.out.println("Scaled 2:"+arm.getScaledSensorValue(2));
-			System.out.println("Scaled 1:"+arm.getSensorValue(2));
+			System.out.println("Scaled 2:"+arm.getNormalizedValue(2));
+			System.out.println("Scaled 2:"+arm.getSensorValue(2));
 			
 			System.out.println("Press Enter Sensor 3:");
-			//br.readLine();
+			br.readLine();
 			System.out.println("Raw 3: "+arm.getRawSensorValue(3));
-			//System.out.println("Scaled 3:"+arm.getScaledSensorValue(3));
-			System.out.println("Scaled 1:"+arm.getSensorValue(3));
+			System.out.println("Scaled 3:"+arm.getNormalizedValue(3));
+			System.out.println("Scaled 3:"+arm.getSensorValue(3));
 			arm.disconnect();
 		
 		} catch (Exception e) {
