@@ -39,6 +39,7 @@ public class NXTArm extends Model {
 	private final int MAX_MOTOR_SPEED = 99999;
 	
 	//public  static SensorPort port;
+	private SensorPort[] connectedSensors = new SensorPort[5];
 	public TouchSensor touch = new TouchSensor(SensorPort.S1);
 	public SoundSensor sound = new SoundSensor(SensorPort.S2);
 	public LightSensor light = new LightSensor(SensorPort.S3);
@@ -65,6 +66,7 @@ public class NXTArm extends Model {
 		initializeMotors();
 		initializeGearFactors();
 		initializePose();
+		initializeSensors();
 		connected = true;
 	}
 
@@ -101,6 +103,17 @@ public class NXTArm extends Model {
 			connectedMotors[i] = new RemoteMotor(nxtCommand, i);
 			connectedMotors[i].setSpeed(MAX_MOTOR_SPEED);
 		}
+	}
+	
+	private void initializeSensors()
+	{
+	
+			connectedSensors[1] = SensorPort.S1;
+			connectedSensors[2] = SensorPort.S2;
+			connectedSensors[3] = SensorPort.S3;
+			connectedSensors[4] = SensorPort.S4;
+			
+		
 	}
 	
 	/**
@@ -211,15 +224,7 @@ public class NXTArm extends Model {
 	 */
 	public int getRawSensorValue(int sensorNum)
 	{
-		switch(sensorNum)
-		{
-		case(1): if(touch.isPressed()) return 1; else return 0; 
-		case(2): return SensorPort.S2.readRawValue(); 
-		case(3): return SensorPort.S3.readRawValue(); 
-		case(4): return SensorPort.S4.readRawValue(); 
-		default:
-				return 0;
-		}
+		return connectedSensors[sensorNum].readRawValue();
 	}
 	
 	/**
@@ -230,15 +235,7 @@ public class NXTArm extends Model {
 	 */
 	public int getSensorValue(int sensorNum)
 	{
-		switch(sensorNum)
-		{
-		case(1): if(touch.isPressed()) return 1; else return 0; 
-		case(2): return sound.readValue(); 
-		case(3): return light.readValue(); 
-		case(4): return us.getDistance(); 
-		default:
-				return 0;
-		}
+		return connectedSensors[sensorNum].readValue();
 	}
 	
 	/**
@@ -249,28 +246,12 @@ public class NXTArm extends Model {
 	 */
 	public int getNormalizedValue(int sensorNum)
 	{
-		switch(sensorNum)
-		{
-		case(1): if(touch.isPressed()) return 1; else return 0; 
-		case(2): return sound.readValue(); 
-		case(3): return light.readNormalizedValue(); 
-		case(4): return us.getDistance(); 
-		default:
-				return 0;
-		}
+		return connectedSensors[sensorNum].readNormalizedValue();
 	}
 	
 	public boolean getBooleanValue(int sensorNum)
 	{
-		switch(sensorNum)
-		{
-		case(1): return touch.isPressed(); 
-		case(2): return sound.readValue() != 0; 
-		case(3): return light.readValue() != 0; 
-		case(4): return us.getDistance() < 255;
-		default:
-				return false;
-		}
+		return connectedSensors[sensorNum].readBooleanValue();
 	}
 	/**
 	 * Remember the positions of the motors. 
@@ -396,11 +377,11 @@ public class NXTArm extends Model {
 			System.out.println("Raw 1: "+arm.getRawSensorValue(1));
 			System.out.println("Scaled 1:"+arm.getNormalizedValue(1));
 			System.out.println("Scaled 1:"+arm.getSensorValue(1));
-			/*while(true)
+			while(true)
 			{
-				if(arm.getScaledSensorValue(1) == 1)
+				if(arm.getSensorValue(1) == 1)
 					break;
-			}*/
+			}
 			System.out.println("Press Enter Sensor 2:");
 			br.readLine();
 			System.out.println("Raw 2: "+arm.getRawSensorValue(2));
@@ -412,6 +393,14 @@ public class NXTArm extends Model {
 			System.out.println("Raw 3: "+arm.getRawSensorValue(3));
 			System.out.println("Scaled 3:"+arm.getNormalizedValue(3));
 			System.out.println("Scaled 3:"+arm.getSensorValue(3));
+			
+			System.out.println("Press Enter Sensor 4:");
+			br.readLine();
+			System.out.println("Raw 4: "+arm.getRawSensorValue(4));
+			System.out.println("Scaled 4:"+arm.getNormalizedValue(4));
+			System.out.println("Scaled 4:"+arm.getSensorValue(4));
+			
+	
 			arm.disconnect();
 		
 		} catch (Exception e) {
