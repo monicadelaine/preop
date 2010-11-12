@@ -44,8 +44,6 @@ public class NXTArm extends Model {
 	public SoundSensor sound = new SoundSensor(SensorPort.S2);
 	public LightSensor light = new LightSensor(SensorPort.S3);
 	public UltrasonicSensor us = new UltrasonicSensor(SensorPort.S4);
-	
-	
 
 	public NXTArm() {
 		try {
@@ -105,6 +103,11 @@ public class NXTArm extends Model {
 		}
 	}
 	
+	/**
+	 * Set up the sensors to read from the correct port. Assumes a touch sensor
+	 * in port 1, a sound sensor in 2, a light sensor in 3, and an ultrasonic 
+	 * sensor in 4. This cannot be changed except by modifying member variables above. 
+	 */
 	private void initializeSensors()
 	{
 	
@@ -112,8 +115,6 @@ public class NXTArm extends Model {
 			connectedSensors[2] = SensorPort.S2;
 			connectedSensors[3] = SensorPort.S3;
 			connectedSensors[4] = SensorPort.S4;
-			
-		
 	}
 	
 	/**
@@ -152,6 +153,9 @@ public class NXTArm extends Model {
 	}
 
 	
+	/**
+	 * Disconnect from the robot
+	 */
 	protected void disconnect() {
 		if(connected) {
 			try {
@@ -249,6 +253,12 @@ public class NXTArm extends Model {
 		return connectedSensors[sensorNum].readNormalizedValue();
 	}
 	
+	/**
+	 * Returns the Boolean value from a sensor. For touch sensor, returns true
+	 * if pressed or false if not pressed.
+	 * @param sensorNum: number of the sensor to read
+	 * @return: boolean from the sensor
+	 */
 	public boolean getBooleanValue(int sensorNum)
 	{
 		return connectedSensors[sensorNum].readBooleanValue();
@@ -377,6 +387,7 @@ public class NXTArm extends Model {
 			System.out.println("Raw 1: "+arm.getRawSensorValue(1));
 			System.out.println("Scaled 1:"+arm.getNormalizedValue(1));
 			System.out.println("Scaled 1:"+arm.getSensorValue(1));
+			System.out.println("Press the touch sensor to break the loop!");
 			while(true)
 			{
 				if(arm.getSensorValue(1) == 1)
@@ -400,7 +411,6 @@ public class NXTArm extends Model {
 			System.out.println("Scaled 4:"+arm.getNormalizedValue(4));
 			System.out.println("Scaled 4:"+arm.getSensorValue(4));
 			
-	
 			arm.disconnect();
 		
 		} catch (Exception e) {
