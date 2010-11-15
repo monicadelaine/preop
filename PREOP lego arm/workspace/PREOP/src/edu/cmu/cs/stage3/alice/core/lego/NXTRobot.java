@@ -30,7 +30,7 @@ import lejos.pc.comm.NXTCommException;
 import lejos.pc.comm.NXTCommFactory;
 import lejos.pc.comm.NXTInfo;
 
-public class NXTArm extends Model {
+public class NXTRobot extends Model {
 	private static NXTCommand nxtCommand = new NXTCommand();
 	private NXTComm nxtComm;
 	private RemoteMotor[] connectedMotors = new RemoteMotor[3];
@@ -45,7 +45,7 @@ public class NXTArm extends Model {
 	public LightSensor light = new LightSensor(SensorPort.S3);
 	public UltrasonicSensor us = new UltrasonicSensor(SensorPort.S4);
 
-	public NXTArm() {
+	public NXTRobot() {
 		try {
 			nxtComm = NXTCommFactory.createNXTComm(NXTCommFactory.BLUETOOTH);
 		} catch (NXTCommException e) {
@@ -124,7 +124,6 @@ public class NXTArm extends Model {
 	 */
 	private void initializeGearFactors()
 	{
-		//TODO: un-hard-code these
 		gearFactors[0]=165;
 		gearFactors[1]=72;
 		gearFactors[2]=1;
@@ -178,7 +177,7 @@ public class NXTArm extends Model {
 	{
 			RemoteMotor motor = connectedMotors[motorNum];
 			motor.rotate((int) angle * gearFactors[motorNum], true); 
-			//TODO: why * 360?
+		
 	}
 	
 	/**
@@ -275,7 +274,7 @@ public class NXTArm extends Model {
 		}
 	}
 
-	//TODO: Figure out why claw won't revert.
+
 	/**
 	 * Return the robot to the pose that was recorded by recordPose()
 	 * If recordPose() was never used, then it will return to 0 positions.
@@ -351,10 +350,10 @@ public class NXTArm extends Model {
 
 	public static void main(String[] args) {
 		try {
-			Class.forName("edu.cmu.cs.stage3.alice.core.lego.NXTArm");
+			Class.forName("edu.cmu.cs.stage3.alice.core.lego.NXTRobot");
 			BufferedReader br = new BufferedReader(new InputStreamReader(
 					System.in));
-			NXTArm arm = new NXTArm();
+			NXTRobot arm = new NXTRobot();
 			arm.connect("6831");
 			/*arm.recordPose();
 			System.out.println("Press Enter for Motor 1:");

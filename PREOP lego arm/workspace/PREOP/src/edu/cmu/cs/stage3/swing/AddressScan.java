@@ -11,7 +11,7 @@ import javax.swing.JOptionPane;
 
 import edu.cmu.cs.stage3.alice.core.Address;
 import edu.cmu.cs.stage3.alice.core.irobot.Create;
-import edu.cmu.cs.stage3.alice.core.lego.NXTArm;
+import edu.cmu.cs.stage3.alice.core.lego.NXTRobot;
 
 import javax.bluetooth.BluetoothStateException;
 
@@ -65,7 +65,7 @@ public class AddressScan extends edu.cmu.cs.stage3.swing.ContentPane {
 				new Insets(4, 4, 4, 4), 0, 0));
 	}
 	
-	public AddressScan(NXTArm robot) {
+	public AddressScan(NXTRobot robot) {
 		findAndConnect.setEnabled(false);
 		add(label);
 		typeBox.addKeyListener(new KeyAdapter() {
