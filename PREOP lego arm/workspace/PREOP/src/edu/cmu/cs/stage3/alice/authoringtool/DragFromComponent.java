@@ -560,7 +560,7 @@ public class DragFromComponent extends javax.swing.JPanel implements edu.cmu.cs.
 
 				java.awt.GridBagConstraints c = new java.awt.GridBagConstraints( 0, count, 1, 1, 1.0, 0.0, java.awt.GridBagConstraints.WEST, java.awt.GridBagConstraints.NONE, new java.awt.Insets( 4, 2, 2, 2 ), 0, 0 );
 				if(!(element instanceof edu.cmu.cs.stage3.alice.core.irobot.Create) &&
-				   !(element instanceof edu.cmu.cs.stage3.alice.core.lego.NXTArm))
+				   !(element instanceof edu.cmu.cs.stage3.alice.core.lego.NXTRobot))
 					subPanel.add( capturePoseButton, c );
 
 				propertiesPanel.add( subPanel, constraints );

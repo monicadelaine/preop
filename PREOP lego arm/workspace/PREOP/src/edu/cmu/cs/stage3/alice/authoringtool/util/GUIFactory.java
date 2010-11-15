@@ -626,7 +626,7 @@ public class GUIFactory {
 			if(property.getOwner() instanceof edu.cmu.cs.stage3.alice.core.irobot.Create)
 				addressScan = new edu.cmu.cs.stage3.swing.AddressScan((edu.cmu.cs.stage3.alice.core.irobot.Create)property.getOwner());
 			else
-				addressScan = new edu.cmu.cs.stage3.swing.AddressScan((edu.cmu.cs.stage3.alice.core.lego.NXTArm)property.getOwner());
+				addressScan = new edu.cmu.cs.stage3.swing.AddressScan((edu.cmu.cs.stage3.alice.core.lego.NXTRobot)property.getOwner());
 			int result = edu.cmu.cs.stage3.swing.DialogManager.showDialog( addressScan );
 			if( result == edu.cmu.cs.stage3.swing.ContentPane.OK_OPTION ) {
 				edu.cmu.cs.stage3.alice.core.Address address = addressScan.getSelectedAddress();
