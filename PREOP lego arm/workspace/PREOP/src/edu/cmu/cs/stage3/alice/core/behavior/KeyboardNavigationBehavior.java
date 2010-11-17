@@ -96,7 +96,7 @@ public class KeyboardNavigationBehavior extends InternalResponseBehavior {
 			if ((actions & KeyMapping.NAV_TURNLEFT) != 0)
 				turning.y = -.5;
 		}
-		else if(subject.getValue() instanceof edu.cmu.cs.stage3.alice.core.lego.NXTRobot){
+		else if(subject.getValue() instanceof edu.cmu.cs.stage3.alice.core.lego.NXTArm){
 			//For keyboard control of the lego arm
 		}
 		else {
