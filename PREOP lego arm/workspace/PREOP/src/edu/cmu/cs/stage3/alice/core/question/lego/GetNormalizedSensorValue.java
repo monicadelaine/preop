@@ -9,4 +9,5 @@ public class GetNormalizedSensorValue extends UnaryNumberResultingInNumberQuesti
 	public double getValue(double sensorNum) {
 		return (((NXTArm)subject.getValue()).getNormalizedValue((int)sensorNum));
 	}
+	
 }
