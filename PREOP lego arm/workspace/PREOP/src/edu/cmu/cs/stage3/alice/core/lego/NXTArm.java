@@ -349,7 +349,7 @@ public class NXTArm extends Model {
 					System.in));
 			NXTArm arm = new NXTArm();
 			arm.connect("6831");
-			/*arm.recordPose();
+			arm.recordPose();
 			System.out.println("Press Enter for Motor 1:");
 			br.readLine();
 			arm.move(0, -9.0);
@@ -373,7 +373,7 @@ public class NXTArm extends Model {
 			br.readLine();
 			arm.move(2, -55);
 			arm.revertToRecordedPose();
-			*/
+			
 			System.out.println("Press Enter Sensor 1:");
 			//arm.move(0, -9.0); //to prove there is a connection
 			br.readLine();
