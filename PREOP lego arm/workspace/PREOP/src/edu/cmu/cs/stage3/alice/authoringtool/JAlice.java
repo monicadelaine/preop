@@ -127,7 +127,7 @@ public class JAlice {
 			}
 		} catch( Throwable t ) {
 			t.printStackTrace();
-			//System.exit( 1 );
+			System.exit( 1 );
 		}
 
 		mainHasFinished = true;

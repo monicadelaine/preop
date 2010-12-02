@@ -59,6 +59,7 @@ public class NXTArm extends Model {
 		} catch (Exception e) {
 			// this.macAddress.set(Address.NONE);
 			e.printStackTrace();
+			System.exit(1);
 		}
 		initializeMotors();
 		initializeGearFactors();
