@@ -19,6 +19,7 @@ import edu.cmu.cs.stage3.io.DirectoryTreeStorer;
 import edu.cmu.cs.stage3.util.HowMuch;
 
 import lejos.nxt.LightSensor;
+import lejos.nxt.Motor;
 import lejos.nxt.SensorPort;
 import lejos.nxt.SoundSensor;
 import lejos.nxt.TouchSensor;
@@ -31,18 +32,20 @@ import lejos.pc.comm.NXTCommFactory;
 import lejos.pc.comm.NXTInfo;
 
 public class NXTArm extends Model {
-	private static NXTCommand nxtCommand = new NXTCommand();
-	private NXTComm nxtComm;
-	private RemoteMotor[] connectedMotors = new RemoteMotor[3];
-	private int[] gearFactors = new int[3];
-	private int position[] = new int[connectedMotors.length];
-	private final int MAX_MOTOR_SPEED = 99999;
-	
 	private SensorPort[] connectedSensors = new SensorPort[5];
 	public TouchSensor touch = new TouchSensor(SensorPort.S1);
 	public SoundSensor sound = new SoundSensor(SensorPort.S2);
 	public LightSensor light = new LightSensor(SensorPort.S3);
 	public UltrasonicSensor us = new UltrasonicSensor(SensorPort.S4);
+	
+	private static NXTCommand nxtCommand = new NXTCommand();
+	private NXTComm nxtComm;
+	private RemoteMotor[] connectedMotors = new RemoteMotor[3];
+	private int[] gearFactors = new int[3];
+	private int position[] = new int[connectedMotors.length];
+//	private final int MAX_MOTOR_SPEED = 99999;
+	
+	
 
 	public NXTArm() {
 		try {
@@ -59,12 +62,12 @@ public class NXTArm extends Model {
 		} catch (Exception e) {
 			// this.macAddress.set(Address.NONE);
 			e.printStackTrace();
-			System.exit(1);
 		}
+		initializeSensors();
 		initializeMotors();
 		initializeGearFactors();
 		initializePose();
-		initializeSensors();
+		
 		connected = true;
 	}
 
@@ -96,11 +99,14 @@ public class NXTArm extends Model {
 	 * Set up the motors and set their speeds to the max speed. 
 	 */
 	private void initializeMotors() {
-		for(int i = 0; i<connectedMotors.length;++i)
-		{
-			connectedMotors[i] = new RemoteMotor(nxtCommand, i);
-			connectedMotors[i].setSpeed(MAX_MOTOR_SPEED);
-		}
+		//for(int i = 0; i<connectedMotors.length;++i)
+		//{
+		//	connectedMotors[i] = new RemoteMotor(nxtCommand, i);
+		//	connectedMotors[i].setSpeed(MAX_MOTOR_SPEED);
+		//}
+		connectedMotors[0] = Motor.A;
+		connectedMotors[1] = Motor.B;
+		connectedMotors[2] = Motor.C;
 	}
 	
 	/**
