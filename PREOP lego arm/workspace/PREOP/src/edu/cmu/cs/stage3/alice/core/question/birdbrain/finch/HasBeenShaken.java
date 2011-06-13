@@ -1,13 +1,13 @@
-package edu.cmu.cs.stage3.alice.core.question.irobot.create;
+package edu.cmu.cs.stage3.alice.core.question.birdbrain.finch;
 
 import edu.cmu.cs.stage3.alice.core.question.BooleanQuestion;
-import edu.cmu.cs.stage3.alice.core.irobot.Create;
+import edu.cmu.cs.stage3.alice.core.birdbrain.Finches;
 import edu.cmu.cs.stage3.alice.core.property.RobotProperty;
 
-public class IsAdvancePressed extends BooleanQuestion{
+public class HasBeenShaken extends BooleanQuestion{
 	public final RobotProperty subject = new RobotProperty( this, "subject", null );
 	public Object getValue() {
-		if(((Create)subject.getValue()).isAdvancePressed())
+		if(((Finches)subject.getValue()).hasBeenShaken())
 			return Boolean.TRUE;
 		else
 			return Boolean.FALSE;
