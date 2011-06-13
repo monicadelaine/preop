@@ -7,7 +7,7 @@ import javax.sound.sampled.SourceDataLine;
 
 import edu.cmu.cs.stage3.alice.core.Response;
 import edu.cmu.cs.stage3.alice.core.irobot.Create;
-import edu.cmu.cs.stage3.alice.core.property.CreateProperty;
+import edu.cmu.cs.stage3.alice.core.property.RobotProperty;
 import edu.cmu.cs.stage3.alice.core.property.ListProperty;
 import edu.cmu.cs.stage3.alice.core.Note;
 
@@ -22,7 +22,7 @@ public class PlaySong extends Response{
 //		p.play(new Note(72,1));
 //		p.close();
 	}
-	public final CreateProperty subject = new CreateProperty( this, "subject", null );
+	public final RobotProperty subject = new RobotProperty( this, "subject", null );
 	public final ListProperty note = new ListProperty( this, "list", null );
 	
 	public PlaySong(){

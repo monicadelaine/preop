@@ -184,6 +184,7 @@ public class ElementPopupUtilities {
 				if (!(element instanceof edu.cmu.cs.stage3.alice.core.Camera)){
 					popupStructure.add( GetAGoodLookAtRunnable.class );
 					if(!(element instanceof edu.cmu.cs.stage3.alice.core.irobot.Create) &&
+					   !(element instanceof edu.cmu.cs.stage3.alice.core.birdbrain.Finches) &&
 					   !(element instanceof edu.cmu.cs.stage3.alice.core.lego.NXTArm)){
 						popupStructure.add( StorePoseRunnable.class );
 					}

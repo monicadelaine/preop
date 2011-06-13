@@ -7,13 +7,13 @@ import javax.sound.sampled.SourceDataLine;
 
 import edu.cmu.cs.stage3.alice.core.Response;
 import edu.cmu.cs.stage3.alice.core.irobot.Create;
-import edu.cmu.cs.stage3.alice.core.property.CreateProperty;
+import edu.cmu.cs.stage3.alice.core.property.RobotProperty;
 import edu.cmu.cs.stage3.alice.core.property.NoteProperty;
 import edu.cmu.cs.stage3.alice.core.Note;
 
 
 public class PlayNote extends Response{
-	public final CreateProperty subject = new CreateProperty( this, "subject", null );
+	public final RobotProperty subject = new RobotProperty( this, "subject", null );
 	public final NoteProperty note = new NoteProperty( this, "note", null );
 
 	public PlayNote(){
